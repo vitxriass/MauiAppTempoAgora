@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
+﻿using System.Net;
 using MauiAppTempoAgora.Models;
+using Newtonsoft.Json.Linq;
 
 namespace MauiAppTempoAgora.Services
 {
@@ -46,6 +42,10 @@ namespace MauiAppTempoAgora.Services
                         sunrise = sunrise.ToString(),
                         sunset = sunset.ToString(),
                     }; // Fecha obj do Tempo.
+                    if (resp.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        return null; 
+                    }
                 } // Fecha if se o status do servidor foi de sucesso
             } // fecha laço using
 
